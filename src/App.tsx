@@ -5,7 +5,11 @@ import { convertToWord } from './utils/converter';
 import { DocumentArrowDownIcon } from '@heroicons/react/24/outline';
 import MarkdownIt from 'markdown-it';
 
-const md = new MarkdownIt();
+const md = new MarkdownIt({
+  html: true,
+  linkify: true,
+  typographer: true
+});
 
 function App() {
   const [markdownContent, setMarkdownContent] = useState('');
@@ -33,7 +37,9 @@ function App() {
         
         {htmlContent && (
           <>
-            <Preview htmlContent={htmlContent} />
+            <div className="bg-white shadow-md rounded-lg p-6 mt-6">
+              <Preview htmlContent={htmlContent} />
+            </div>
             
             <button
               onClick={handleConvert}
